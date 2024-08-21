@@ -1,0 +1,13 @@
+services:
+    filebrowser:
+        image: filebrowser/filebrowser
+        volumes:
+            - /home/row-d:/srv
+            - ./filebrowser.db:/database/filebrowser.db
+            - ./settings.json:/config/settings.json
+        environment:
+            - PUID=$(id -u)
+            - PGID=$(id -g)
+        ports:
+            - 8008:80
+        restart: unless-stopped
